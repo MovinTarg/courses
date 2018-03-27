@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Courses</title>
+        {% load static %}
+        <link rel="stylesheet" types="text/css" href="{% static "courses/style.css" %}">
+    </head>
+    <body>
+        <div class='container'>
+            {% if messages %}
+            <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+            <h1>Add a new course</h1>
+            <form action='/add' method='POST'>
+                {% csrf_token %}
+                <label for="name">Name:
+                    <input type="text" name="name" id="name">
+                </label>
+                <label for="description">Description:
+                    <input type="text" name="description" id="description">
+                </label>
+                <input type="submit" value="Add">
+            </form>
+            <h1>Courses</h1>
+            <table>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Description</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+                {% for course in courses %}
+                <tr>
+                    <td>{{ course.name }}</td>
+                    <td>{{ course.description.description }}</td>
+                    <td>{{ course.created_at }}</td>
+                    <td><a href="/{{ course.id }}/remove">Remove</a> | <a href="/{{ course.id }}/comment">Comment</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </body>
+</html>

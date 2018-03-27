@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Delete Course?</title>
+        {% load static %}
+        <link rel="stylesheet" types="text/css" href="{% static "semi_restful_users/style.css" %}">
+    </head>
+    <body>
+        <div class='container'>
+            <h1>Are you sure you want to delete the following course?</h1>
+            <p>{{ course.name }}</p>
+            <p>{{ course.description.description }}</p>
+            <a class="btn" href='/'>No</a>
+            <a class="btn" href="/{{ course.id }}/delete">Yes! I want to delete this</a>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Comments</title>
+        {% load static %}
+        <link rel="stylesheet" types="text/css" href="{% static "semi_restful_users/style.css" %}">
+    </head>
+    <body>
+        <div class='container'>
+            <h1>Add a comment to the following course:</h1>
+            <p>{{ course.name }}</p>
+            <p>{{ course.description.description }}</p>
+            {% for comment in comments %}
+                <p>{{ comment.comment }}</p>
+            {% endfor %}
+            <form action='/{{ course.id }}/nComment' method='POST'>
+                {% csrf_token %}
+                <label for="comment">Comment:
+                    <input type="text" name="comment" id="comment">
+                </label>
+                <input type="submit" value="Comment">
+            </form>
+            <a class="btn" href='/'>Go back</a>
+        </div>
+    </body>
+</html>
